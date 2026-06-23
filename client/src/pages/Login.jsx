@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
 
@@ -10,10 +10,7 @@ export default function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-  });const logout = () => {
-    localStorage.removeItem("token");
-    setToken("");
-  };
+  });
 
   const handleChange = (e) => {
     setFormData({
@@ -48,34 +45,69 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="min-h-[80vh] flex items-center justify-center bg-[#FFF8F3] px-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-        />
+        <h1 className="text-3xl font-bold text-center text-[#401E12] mb-2">
+          Welcome Back
+        </h1>
 
-        <br /><br />
+        <p className="text-center text-gray-500 mb-8">
+          Login to continue your blogging journey
+        </p>
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-5"
+        >
+          <div>
+            <label className="block mb-2 font-medium text-[#401E12]">
+              Email
+            </label>
 
-        <br /><br />
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#FFA500]"
+            />
+          </div>
 
-        <button type="submit">
-          Login
-        </button>
-      </form>
+          <div>
+            <label className="block mb-2 font-medium text-[#401E12]">
+              Password
+            </label>
+
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              value={formData.password}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#FFA500]"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-[#401E12] text-[#FFA500] py-3 rounded-lg font-semibold hover:opacity-90 transition"
+          >
+            Login
+          </button>
+        </form>
+
+        <p className="text-center mt-6 text-gray-600">
+          Don't have an account?{" "}
+          <Link
+            to="/register"
+            className="text-[#5A2B1B] font-semibold hover:text-[#FFA500]"
+          >
+            Register
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }

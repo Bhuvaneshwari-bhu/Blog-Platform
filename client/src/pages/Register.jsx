@@ -1,6 +1,6 @@
 import { useState } from "react";
 import api from "../api/axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -28,49 +28,92 @@ export default function Register() {
 
       navigate("/login");
     } catch (error) {
-      alert(error.response?.data?.msg || "Registration Failed");
+      alert(
+        error.response?.data?.msg ||
+        "Registration Failed"
+      );
     }
   };
 
   return (
-    <div>
-      <h1>Register</h1>
+    <div className="min-h-[80vh] flex items-center justify-center bg-[#FFF8F3] px-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={formData.name}
-          onChange={handleChange}
-        />
+        <h1 className="text-3xl font-bold text-center text-[#401E12] mb-2">
+          Create Account
+        </h1>
 
-        <br /><br />
+        <p className="text-center text-gray-500 mb-8">
+          Join BlogSphere and start sharing your ideas
+        </p>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-        />
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-5"
+        >
+          <div>
+            <label className="block mb-2 font-medium text-[#401E12]">
+              Name
+            </label>
 
-        <br /><br />
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter your name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#FFA500]"
+            />
+          </div>
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
+          <div>
+            <label className="block mb-2 font-medium text-[#401E12]">
+              Email
+            </label>
 
-        <br /><br />
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#FFA500]"
+            />
+          </div>
 
-        <button type="submit">
-          Register
-        </button>
-      </form>
+          <div>
+            <label className="block mb-2 font-medium text-[#401E12]">
+              Password
+            </label>
+
+            <input
+              type="password"
+              name="password"
+              placeholder="Create a password"
+              value={formData.password}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#FFA500]"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-[#401E12] text-[#FFA500] py-3 rounded-lg font-semibold hover:opacity-90 transition"
+          >
+            Create Account
+          </button>
+        </form>
+
+        <p className="text-center mt-6 text-gray-600">
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            className="text-[#5A2B1B] font-semibold hover:text-[#FFA500]"
+          >
+            Login
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }

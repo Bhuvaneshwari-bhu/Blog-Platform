@@ -9,9 +9,12 @@ import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import EditPost from "./pages/EditPost";
 import MyPosts from "./pages/MyPosts";
+import Profile from "./pages/Profile";
+import Footer from "./components/Footer";
 function App() {
   return (
     <BrowserRouter>
+    
     <Navbar />
       <Routes>
 
@@ -47,9 +50,13 @@ function App() {
     </ProtectedRoute>
   }
 />
+
+<Route path="/profile/:id" element={<Profile />} />
+
         <Route path="/post/:id" element={<PostDetails />} />
 
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
